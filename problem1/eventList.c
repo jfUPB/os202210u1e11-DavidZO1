@@ -50,15 +50,21 @@ void RemoveEvent(EventList *this, char *name)
     {
         while (a !=NULL)
         {
-            if (*this->head->eventName==*name)
+            if (*(this->head->eventName+2)==*(name +2))
             {
                 this->head= this->head->next;
                 break;
             }
-            else if (*a->next->eventName==*name)
+            else if (*(a->next->eventName+2)==*(name +2))
             {
-
+                a->next=a->next->next;
+                break;
             }
+            a = a->next;
+        }
+        if (this->head==NULL)
+        {
+            this->isEmpty=0;
         }
         
     }
